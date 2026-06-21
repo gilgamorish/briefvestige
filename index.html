@@ -1936,9 +1936,12 @@
             return COLOR_HEX[n] || null;
         }
 
-        const STAR_KEY = "bg_starred_v5";
+       const STAR_KEY = "bg_starred_v5";
         const HIST_KEY = "bg_history_v5";
-
+        const CUSTOM_KEY = "bg_custom_v1";
+        const PIN_KEY = "bg_pins_v1";
+        function loadPins() { try { return JSON.parse(store.get(PIN_KEY) || '{}'); } catch { return {}; } }
+        function savePins(data) { store.set(PIN_KEY, JSON.stringify(data)); }
         /* Field key → W bank key mapping for the manual picker */
         const FIELD_BANK_MAP = {
             job: "jobs", race: "races", genre: "genres", theme: "themes",
