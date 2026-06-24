@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,9 +17,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300&display=swap"
         rel="stylesheet">
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@8.0.2/babel.min.js"></script>
     <style>
         :root {
             --bg: #07070E;
@@ -1894,7 +1894,7 @@
             requestAnimationFrame(draw);
         })();
     </script>
-    <script type="text/babel">const { useState, useEffect } = React;
+    <script type="text/plain" id="app-source">const { useState, useEffect } = React;
         const store = { get: k => { try { return localStorage.getItem(k) } catch { return null } }, set: (k, v) => { try { localStorage.setItem(k, v) } catch { } } };
 
         /* ── Color name to hex lookup ── */
@@ -1938,10 +1938,7 @@
 
        const STAR_KEY = "bg_starred_v5";
         const HIST_KEY = "bg_history_v5";
-        const CUSTOM_KEY = "bg_custom_v1";
-        const PIN_KEY = "bg_pins_v1";
-        function loadPins() { try { return JSON.parse(store.get(PIN_KEY) || '{}'); } catch { return {}; } }
-        function savePins(data) { store.set(PIN_KEY, JSON.stringify(data)); }
+        const WHATS_NEW_VERSION = "4.2";
         /* Field key → W bank key mapping for the manual picker */
         const FIELD_BANK_MAP = {
             job: "jobs", race: "races", genre: "genres", theme: "themes",
@@ -2146,6 +2143,31 @@
                 "solar gladiator", "tide priest", "war botanist",
                 "plague architect", "echo knight", "ink exorcist",
                 "gravity shepherd", "salt executioner", "mirror warden",
+                // new additions — trades & crafts
+                "miller", "thatcher", "wainwright", "trapper", "tilemaker",
+                "basket weaver", "drover",
+                // new additions — historical specialists
+                "court astrologer", "royal taster", "treasury clerk", "court jester",
+                "relic appraiser", "border toll collector",
+                // new additions — modern specialists
+                "search and rescue diver", "avalanche forecaster", "power line technician",
+                "subway tunnel inspector", "wildlife tracker", "storm chaser",
+                "black box analyst", "deep web investigator",
+                // new additions — sci-fi & future
+                "asteroid prospector", "atmosphere engineer", "synthetic organ grower",
+                "void salvager", "dream archivist", "memory courier",
+                "gravity well technician", "exo-suit mechanic",
+                // new additions — criminal & underworld
+                "safecracker", "counterfeiter", "black market broker", "loan shark",
+                "graverobber",
+                // new additions — military
+                "trench medic", "naval gunner", "scout sniper", "war chaplain",
+                // new additions — arcane & occult
+                "bone diviner", "curse breaker", "ritual scribe", "grave warden",
+                // new additions — merged / combo roles
+                "glass oracle", "iron confessor", "salt cartographer", "moth priest",
+                "lamplighter", "bell ringer", "toll bridge keeper", "circuit rider",
+                "salvage yard manager", "deep freeze technician", "orbital debris cleaner",
             ],
             races: [
                 "human — unremarkable, adaptable, defines everything by contrast",
@@ -2209,6 +2231,21 @@
                 "lichspawn — not undead, but descended from one — pallor, calm, too still",
                 "halfborn — split between two non-human lineages, neither dominant",
                 "moonblooded — silver undertone skin, pupils expand to fill the eye at night",
+                "barkskin — bark-textured epidermis, slow healing, faint sap scent, growth rings visible at joints",
+                "glowmarked — bioluminescent veins visible under skin, brighter when emotional, cool to the touch",
+                "saltcrust — salt-crystal patches along the shoulders and spine, brittle texture, preserved by drying winds",
+                "ironvein — metallic-grey blood visible through pale skin, magnetic at the fingertips, heavier bone density",
+                "thistleborn — thorned ridges along the forearms and spine, defensive instinct, tough hide",
+                "echofolk — slightly oversized ears, faint sonar hum audible up close, near-blind in total darkness",
+                "ashveil — soot-grey skin with faint embers visible in cracks, warm to the touch, born near active fault lines",
+                "honeyblood — amber-tinted blood and sweat, faint floral scent, slow aging, drawn to warmth",
+                "clawkin — retractable claw ridges along the knuckles, predatory gait, sharpened canine teeth",
+                "stormveined — pale skin with visible lightning-pattern scarring, hair that lifts in static charge, calm in storms",
+                "marrowkeep — visibly thick-jointed frame, bone structure slightly external at elbows and knees, slow but enduring",
+                "pollenkin — fine dust-like spores shed from the skin in warm weather, faint seasonal color shift, plant-adjacent biology",
+                "tideforged — coral-like growths along the shoulders and scalp, salt-cracked skin, slow blinking nictitating membrane",
+                "duneborn — sand-toned skin with fine granular texture, nostrils that seal shut, heat-tolerant",
+                "graftling — visible surgical seams across the body, mismatched skin tones suggesting assembly, calm unreadable expression",
             ],
             genres: [
                 "fantasy", "science fiction", "horror", "mystery", "thriller", "adventure",
@@ -2228,6 +2265,11 @@
                 "portal fantasy", "gaslamp mystery", "gothic romance", "haunted house",
                 "found footage", "slow burn psychological", "war crime tribunal",
                 "post-war reconstruction", "interplanetary colonialism", "generation ship",
+                "alt-history", "weird war", "ghost story", "treasure hunt", "prison break",
+                "road trip", "locked-room mystery", "conspiracy thriller", "courtroom drama",
+                "espionage", "cult horror", "slasher", "splatter horror", "techno-thriller",
+                "climate fiction", "deep sea horror", "arctic survival", "desert noir",
+                "lost world", "myth retelling",
             ],
             themes: [
                 "gothic", "solarpunk", "steampunk", "biopunk", "cyberpunk", "dieselpunk",
@@ -2351,6 +2393,23 @@
                 "parking garage — brutalist concrete, yellow stripe, oil stain, echo",
                 "loading dock — corrugated steel, pallet jack, fluorescent dawn",
                 "coin laundry — blue detergent smell, plastic chairs, spinning drum",
+                "tropical", "volcanic", "tundra", "swamp", "highland", "monsoon",
+                "salt marsh", "permafrost", "savanna", "canopy",
+                "rust bucket — flaking orange-brown, perforated metal, decades of weather",
+                "church bell — bronze patina, deep resonant crack, rope-worn handle",
+                "spider — segmented legs, web logic, patient stillness, sudden strike",
+                "octopus — boneless camouflage, ink cloud, alien intelligence",
+                "barn swallow — split tail, mud nest, low fast flight",
+                "komodo dragon — armored scales, venomous bite, ancient patience",
+                "armored personnel carrier — matte green, tread marks, reinforced hull",
+                "tugboat — squat and powerful, rope-burned deck, harbor grime",
+                "grandfather clock — dark wood case, brass pendulum, ticking patience",
+                "stained glass window — leaded lines, jewel-tone light, cracked pane",
+                "rope bridge — fraying fiber, swaying span, void below",
+                "campfire — orange flicker, smoke curl, circle of stones",
+                "abandoned greenhouse — broken glass panes, overgrown vines, rusted frame",
+                "subway tunnel — tiled walls, flickering light, distant rumble",
+                "wind turbine — white blade, slow rotation, horizon scale",
             ],
             cultures: [
                 "viking norse — furs, iron, carved wood, longship shapes, knotwork",
@@ -2485,20 +2544,13 @@
                 "looks brutal, was made with care",
             ],
             shapes: [
-                "circles — soft, contained, approachable",
-                "triangles — sharp, aggressive, directional",
-                "squares — stable, rigid, grounded",
-                "circles + triangles — warmth with an edge",
-                "circles + squares — organic meets mechanical",
-                "triangles + squares — aggressive and grounded",
-                "all three — layered, complex, unpredictable",
-                "triangle dominant — predatory, pointed, forward-leaning",
-                "circle dominant — soft power, rhythm, held together",
-                "square dominant — authority, weight, immovable",
-                "asymmetric — uneven, one-sided, caught mid-motion",
-                "elongated triangles — vertical threat, blades and spires",
-                "nested shapes — layers within layers, hidden depth",
-                "spiraling — cycles, obsession, inward pull",
+                "triangle",
+                "square",
+                "circle",
+                "triangle-square",
+                "triangle-circle",
+                "square-circle",
+                "triangle-square-circle",
             ],
             colors: [
                 "burnt sienna", "prussian blue", "viridian", "raw umber", "titanium white",
@@ -3193,13 +3245,13 @@
 
         /* Boot sequence  */
         const BOOT = [
-            { t: "initiating brief generator / vestige v4.0", type: "sys", delay: 80 },
-            { t: "character archetypes...", ok: "300+ occupations, 60 races", delay: 320 },
-            { t: "genre + theme matrices...", ok: "70 genres, 120+ themes", delay: 580 },
-            { t: "culture library...", ok: "72 historical cultures", delay: 840 },
-            { t: "environment schemas...", ok: "80+ biomes, 160+ building types", delay: 1080 },
-            { t: "color + material banks...", ok: "70 colors, 55 materials", delay: 1300 },
-            { t: "shape + pillar systems...", ok: "14 shapes, 150+ pillars", delay: 1500 },
+            { t: `initiating brief generator / vestige v${WHATS_NEW_VERSION}`, type: "sys", delay: 80 },
+            { t: "character archetypes...", ok: "299 occupations, 76 races", delay: 320 },
+            { t: "genre + theme matrices...", ok: "95 genres, 196 themes", delay: 580 },
+            { t: "culture library...", ok: "65 historical cultures", delay: 840 },
+            { t: "environment schemas...", ok: "79 biomes, 151 building types", delay: 1080 },
+            { t: "color + material banks...", ok: "88 colors, 76 materials", delay: 1300 },
+            { t: "shape + pillar systems...", ok: "7 shapes, 148 pillars", delay: 1500 },
             { t: "ALL SYSTEMS NOMINAL — READY TO GENERATE", type: "sys", delay: 1750 },
         ];
 
@@ -3579,7 +3631,6 @@
         }
         /* Walkthrough tour  */
         /* ── What's New data ── */
-        const WHATS_NEW_VERSION = "4.2";
         const WHATS_NEW = [
             { version: "v4.2", tag: "fixed", tagLabel: "removed",
                 title: "Rating System Scrapped",
@@ -4276,6 +4327,17 @@
             );
         }
                 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+    <script>
+        (function () {
+            var source = document.getElementById('app-source').textContent;
+            var compiled = Babel.transform(source, {
+                presets: [['react', { runtime: 'classic' }]]
+            }).code;
+            var s = document.createElement('script');
+            s.textContent = compiled;
+            document.body.appendChild(s);
+        })();
     </script>
 </body>
 
